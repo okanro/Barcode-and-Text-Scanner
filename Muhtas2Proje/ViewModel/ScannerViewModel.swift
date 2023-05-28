@@ -7,6 +7,7 @@
 
 import VisionKit
 import AVKit
+import PhotosUI
 import SwiftUI
 
 enum ScanType: String {
@@ -31,6 +32,10 @@ final class ScannerViewModel: ObservableObject {
     @Published var textContentType: DataScannerViewController.TextContentType?
     @Published var recognizesMultipleItems = true
     
+    @Published var shouldCapturePhoto = false
+    @Published var capturedPhoto: IdentifiableImage? = nil
+    @Published var selectedPhotoPickerItem: PhotosPickerItem? = nil
+
     var recognizedDataType: DataScannerViewController.RecognizedDataType {
         scanType == .barcode ? .barcode() : .text(textContentType: textContentType)
     }
