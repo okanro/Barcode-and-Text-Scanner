@@ -33,6 +33,7 @@ struct DataScannerView: UIViewControllerRepresentable {
         try? uiViewController.startScanning()
         if shouldCapturePhoto {
             capturePhoto(dataScannerVC: uiViewController)
+            shouldCapturePhoto = false
         }
     }
     

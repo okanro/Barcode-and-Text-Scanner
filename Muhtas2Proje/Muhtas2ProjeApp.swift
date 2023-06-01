@@ -10,15 +10,11 @@ import SwiftUI
 @main
 struct MuhtasProjeApp: App {
     
-    @StateObject private var vm = ScannerViewModel()
+//    @StateObject private var vm = ScannerViewModel()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(vm)
-                .task {
-                    await vm.requestDataScannerAccessRequestStatus()
-                }
+            StartView()
         }
     }
 }

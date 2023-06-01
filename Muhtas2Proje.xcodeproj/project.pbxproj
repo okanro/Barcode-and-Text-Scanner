@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B218186D2A284D1400FA52A4 /* ScaledImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B218186C2A284D1400FA52A4 /* ScaledImage.swift */; };
+		B21818712A28526D00FA52A4 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21818702A28526D00FA52A4 /* StartView.swift */; };
+		B2598F002A27EA19009D181A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2598EFF2A27EA19009D181A /* Extensions.swift */; };
 		B2C1C45C2A2046D400EF6707 /* LiveTextInteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C1C45B2A2046D400EF6707 /* LiveTextInteractionView.swift */; };
+		B2C1C45F2A24938200EF6707 /* QrBarcodeGenerateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C1C45E2A24938200EF6707 /* QrBarcodeGenerateView.swift */; };
 		B2D66ABE2A1DBC2000826DAB /* Muhtas2ProjeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D66ABD2A1DBC2000826DAB /* Muhtas2ProjeApp.swift */; };
-		B2D66AC02A1DBC2000826DAB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D66ABF2A1DBC2000826DAB /* ContentView.swift */; };
+		B2D66AC02A1DBC2000826DAB /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D66ABF2A1DBC2000826DAB /* ScanView.swift */; };
 		B2D66AC22A1DBC2100826DAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2D66AC12A1DBC2100826DAB /* Assets.xcassets */; };
 		B2D66AC52A1DBC2100826DAB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2D66AC42A1DBC2100826DAB /* Preview Assets.xcassets */; };
 		B2D66ACC2A1DBC4E00826DAB /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D66ACB2A1DBC4E00826DAB /* ScannerViewModel.swift */; };
@@ -17,11 +21,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B218186C2A284D1400FA52A4 /* ScaledImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledImage.swift; sourceTree = "<group>"; };
+		B21818702A28526D00FA52A4 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		B2598EFF2A27EA19009D181A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B2C1C45B2A2046D400EF6707 /* LiveTextInteractionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTextInteractionView.swift; sourceTree = "<group>"; };
-		B2C1C45D2A22E5C700EF6707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B2C1C45E2A24938200EF6707 /* QrBarcodeGenerateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QrBarcodeGenerateView.swift; sourceTree = "<group>"; };
 		B2D66ABA2A1DBC2000826DAB /* Muhtas2Proje.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muhtas2Proje.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2D66ABD2A1DBC2000826DAB /* Muhtas2ProjeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Muhtas2ProjeApp.swift; sourceTree = "<group>"; };
-		B2D66ABF2A1DBC2000826DAB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B2D66ABF2A1DBC2000826DAB /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		B2D66AC12A1DBC2100826DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2D66AC42A1DBC2100826DAB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B2D66ACB2A1DBC4E00826DAB /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
@@ -39,13 +46,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B2594E9D2A1ED2B000AB1FCA /* View */ = {
+		B218186A2A27EE2C00FA52A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B2D66ABF2A1DBC2000826DAB /* ScanView.swift */,
 				B2D66ACD2A1DBC6000826DAB /* DataScannerView.swift */,
 				B2C1C45B2A2046D400EF6707 /* LiveTextInteractionView.swift */,
+				B2C1C45E2A24938200EF6707 /* QrBarcodeGenerateView.swift */,
+				B21818702A28526D00FA52A4 /* StartView.swift */,
 			);
-			path = View;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B218186B2A284CFF00FA52A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B218186C2A284D1400FA52A4 /* ScaledImage.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B2594E9E2A1ED2B700AB1FCA /* ViewModel */ = {
@@ -56,10 +74,19 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		B2598EFE2A27EA03009D181A /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				B2598EFF2A27EA19009D181A /* Extensions.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		B2D66AB12A1DBC2000826DAB = {
 			isa = PBXGroup;
 			children = (
 				B2D66ABC2A1DBC2000826DAB /* Muhtas2Proje */,
+				B2D66AC12A1DBC2100826DAB /* Assets.xcassets */,
 				B2D66ABB2A1DBC2000826DAB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -75,12 +102,11 @@
 		B2D66ABC2A1DBC2000826DAB /* Muhtas2Proje */ = {
 			isa = PBXGroup;
 			children = (
-				B2C1C45D2A22E5C700EF6707 /* Info.plist */,
+				B218186B2A284CFF00FA52A4 /* Models */,
 				B2D66ABD2A1DBC2000826DAB /* Muhtas2ProjeApp.swift */,
-				B2D66ABF2A1DBC2000826DAB /* ContentView.swift */,
-				B2594E9D2A1ED2B000AB1FCA /* View */,
+				B218186A2A27EE2C00FA52A4 /* Views */,
 				B2594E9E2A1ED2B700AB1FCA /* ViewModel */,
-				B2D66AC12A1DBC2100826DAB /* Assets.xcassets */,
+				B2598EFE2A27EA03009D181A /* Support */,
 				B2D66AC32A1DBC2100826DAB /* Preview Content */,
 			);
 			path = Muhtas2Proje;
@@ -164,11 +190,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2D66AC02A1DBC2000826DAB /* ContentView.swift in Sources */,
+				B21818712A28526D00FA52A4 /* StartView.swift in Sources */,
+				B2D66AC02A1DBC2000826DAB /* ScanView.swift in Sources */,
 				B2D66ACC2A1DBC4E00826DAB /* ScannerViewModel.swift in Sources */,
 				B2C1C45C2A2046D400EF6707 /* LiveTextInteractionView.swift in Sources */,
+				B218186D2A284D1400FA52A4 /* ScaledImage.swift in Sources */,
 				B2D66ABE2A1DBC2000826DAB /* Muhtas2ProjeApp.swift in Sources */,
+				B2C1C45F2A24938200EF6707 /* QrBarcodeGenerateView.swift in Sources */,
 				B2D66ACE2A1DBC6000826DAB /* DataScannerView.swift in Sources */,
+				B2598F002A27EA19009D181A /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +333,7 @@
 				INFOPLIST_FILE = Muhtas2Proje/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access for scanning barcode and text";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = Try;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app needs permisson to save this image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -336,6 +367,7 @@
 				INFOPLIST_FILE = Muhtas2Proje/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access for scanning barcode and text";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = Try;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app needs permisson to save this image";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

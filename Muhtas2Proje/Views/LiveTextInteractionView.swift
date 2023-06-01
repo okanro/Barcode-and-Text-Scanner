@@ -26,14 +26,13 @@ struct LiveTextInteractionView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        Task {
+        Task { @MainActor in 
             let configuration = ImageAnalyzer.Configuration([.text, .machineReadableCode])
             do {
                 if let image = imageView.image {
                     let analysis = try await analyzer.analyze(image, configuration: configuration)
                     interaction.analysis = analysis;
                     interaction.preferredInteractionTypes = .textSelection
-                    
                 }
             }
             catch {
@@ -44,7 +43,6 @@ struct LiveTextInteractionView: UIViewRepresentable {
 }
 
 class LiveTextImageView: UIImageView {
-    
     override var intrinsicContentSize: CGSize {
         .zero
     }

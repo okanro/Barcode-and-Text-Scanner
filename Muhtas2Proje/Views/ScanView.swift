@@ -8,9 +8,10 @@
 import SwiftUI
 import VisionKit
 import PhotosUI
+import UIKit
 
-struct ContentView: View {
-    
+struct ScanView: View {
+    @State var isAlreadyPresented = false
     @EnvironmentObject var vm: ScannerViewModel
     
     private let textContentTypes: [(title: String, contentType: DataScannerViewController.TextContentType?)] = [
@@ -40,39 +41,59 @@ struct ContentView: View {
     private var mainView: some View {
         ZStack{
             liveImageFeed
-            .background(Color.gray.opacity(0.3))
-            .ignoresSafeArea()
-            .id(vm.dataScannerViewId)
-            .onChange(of: vm.scanType) { _ in vm.recognizedItems = [] }
-            .onChange(of: vm.textContentType) { _ in vm.recognizedItems = [] }
-            .onChange(of: vm.recognizesMultipleItems) { _ in vm.recognizedItems = [] }
-            .onChange(of: vm.selectedPhotoPickerItem) { value in
-                guard let value = value else { return }
-                Task {
-                    guard let data = try? await value.loadTransferable(type: Data.self),
-                          let image = UIImage(data: data)
-                    else {
-                        return
+                .background(Color.gray.opacity(0.3))
+                .ignoresSafeArea()
+                .id(vm.dataScannerViewId)
+                .onChange(of: vm.scanType) { _ in vm.recognizedItems = [] }
+                .onChange(of: vm.textContentType) { _ in vm.recognizedItems = [] }
+                .onChange(of: vm.recognizesMultipleItems) { _ in vm.recognizedItems = [] }
+                .onChange(of: vm.selectedPhotoPickerItem) { value in
+                    guard let value = value else { return }
+                    Task {
+                        guard let data = try? await value.loadTransferable(type: Data.self),
+                              let image = UIImage(data: data)
+                        else {
+                            return
+                        }
+                        self.vm.capturedPhoto = .init(image: image)
                     }
-                    self.vm.capturedPhoto = .init(image: image)
                 }
-            }
             Spacer()
-            scannerSheetView
                 .sheet(item: $vm.capturedPhoto) { photo in
                     ZStack(alignment: .topTrailing) {
                         LiveTextInteractionView(image: photo.image)
-                        Button {
-                            vm.capturedPhoto = nil
-                        } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .imageScale(.large)
+                        HStack(){
+                            Button {
+                                vm.capturedPhoto = nil
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .imageScale(.large)
+                            }
+                            .foregroundColor(.white)
+                            Spacer()
+                            Button {
+                                UIImageWriteToSavedPhotosAlbum(photo.image, nil, nil, nil)
+                                vm.isSaved = true
+                                vm.shouldAlert = true
+                            } label: {
+                                Image(systemName: vm.isSaved == true ? "square.and.arrow.down.fill" : "square.and.arrow.down")
+                                    .imageScale(.large)
+                            }
+                            
+                            .allowsHitTesting(vm.isSaved == true ? false : true)
+                            .foregroundColor(.white)
                         }
-                        .foregroundColor(.white)
-                        .padding([.trailing, .top])
-                        }
+                        .alert("Saved succesfully", isPresented: $vm.shouldAlert, actions: {
+                        })
+                        .padding()
+                    }.onAppear { vm.shouldCapturePhoto = false }
+                    .onDisappear{
+                        vm.isSaved = false
+                        isAlreadyPresented = false
+                    }
                     .edgesIgnoringSafeArea(.bottom)
                 }
+            scannerSheetView
         }
     }
     
@@ -82,6 +103,7 @@ struct ContentView: View {
             Image(uiImage: capturedPhoto.image)
                 .resizable()
                 .scaledToFit()
+                .onAppear{ vm.shouldCapturePhoto = false}
         } else {
             DataScannerView(
                 shouldCapturePhoto: $vm.shouldCapturePhoto,
@@ -92,6 +114,7 @@ struct ContentView: View {
             )
         }
     }
+    
     // header view
     private var headerView: some View {
         VStack {
@@ -121,7 +144,10 @@ struct ContentView: View {
                     
                 }
                 Button {
-                    vm.shouldCapturePhoto = true
+                    if isAlreadyPresented == false {
+                        vm.shouldCapturePhoto = true
+                        isAlreadyPresented = true
+                    }
                 } label: {
                     Image(systemName: "camera.circle")
                         .imageScale(.large)
@@ -159,7 +185,7 @@ struct ContentView: View {
             bottomContainerView.frame(height: 250, alignment: .bottom)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.ultraThinMaterial)
+                        .fill(LinearGradient(gradient: Gradient(colors: [Color.pink.opacity(0.7), Color.orange.opacity(0.7)]), startPoint: .leading, endPoint: .trailing))
                 )
                 .cornerRadius(10)
         }.allowsHitTesting(vm.capturedPhoto == nil)
